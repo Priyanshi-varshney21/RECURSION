@@ -11,3 +11,17 @@ def myPow(self, x, n):
             x *= x
             n //= 2
         return ans
+
+# GENERATE PARENTHESIS
+def generateParenthesis(self, n):
+        ans=[]
+        def solve(s,open,close):
+            if open==n and close==n:
+                ans.append(s)
+                return 
+            if open<n:
+                solve(s+"(",open+1,close)
+            if close<open:
+                solve(s+")",open,close+1)
+        solve("",0,0)
+        return ans
