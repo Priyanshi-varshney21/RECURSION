@@ -25,3 +25,19 @@ def generateParenthesis(self, n):
                 solve(s+")",open,close+1)
         solve("",0,0)
         return ans
+
+# POWER SET
+def powerSet(self, nums):
+        ans=[]
+        def solve(i,s):
+            if i==len(nums):
+                ans.append(s.copy())
+                return 
+            #INCLUDE 
+            s.append(nums[i])
+            solve(i+1,s)
+            #EXCLUDE
+            s.pop()
+            solve(i+1,s)
+        solve(0,[])
+        return ans
