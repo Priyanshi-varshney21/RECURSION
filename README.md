@@ -41,3 +41,17 @@ def powerSet(self, nums):
             solve(i+1,s)
         solve(0,[])
         return ans
+# COUNT GOOD NUMBERS
+def countGoodNumbers(self, n: int) -> int:
+        MOD=10**9+7
+        def power(x,n):
+            if n==0:
+                return 1
+            half=power(x,n//2)
+            ans=(half*half)%MOD
+            if n%2==1:
+                ans=(half*x)%MOD
+            return ans
+        even =(n+1)//2
+        odd=n//2
+        return (power(5,even)*power(4,odd))%MOD
