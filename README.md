@@ -65,3 +65,14 @@ def reverseStack(self, stack):
             return solve(left+1,right-1,stack)
         return solve(0,len(stack)-1,stack)
 
+# CHECK IF THEIR EXISTS SUBSEQUENCE WITH SUM K
+def checkSubsequenceSum(self, nums, k):
+        def solve(i,current_sum):
+            if i==len(nums):
+                return current_sum==k
+            if solve(i+1,current_sum+nums[i]):
+                return True
+            if solve(i+1,current_sum):
+                return True
+            return False
+        return solve(0,0)
