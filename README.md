@@ -55,3 +55,13 @@ def countGoodNumbers(self, n: int) -> int:
         even =(n+1)//2
         odd=n//2
         return (power(5,even)*power(4,odd))%MOD
+
+# REVESRE A STACK
+def reverseStack(self, stack):
+        def solve(left,right,stack):
+            if left>=right:
+                return stack
+            stack[left],stack[right]=stack[right],stack[left]
+            return solve(left+1,right-1,stack)
+        return solve(0,len(stack)-1,stack)
+
