@@ -90,3 +90,18 @@ def countSubsequenceWithTargetSum(self, nums, k):
             solve(i+1,curr_sum)
         solve(0,0)
         return count
+
+# GENERATE BINARY STRINGS WITHOUT CONSECUTIVE 1's
+def generateBinaryStrings(self, n):
+        ans=[]
+        def solve(s):
+            if len(s)==n:
+                ans.append(s)
+                return 
+            #ADD 0
+            solve(s+"0")
+            #ADD 1
+            if len(s)==0 or s[-1]!="1":
+                solve(s+"1")
+        solve("")
+        return ans
