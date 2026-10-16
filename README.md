@@ -76,3 +76,17 @@ def checkSubsequenceSum(self, nums, k):
                 return True
             return False
         return solve(0,0)
+
+# COUNT ALL SUBSEQUENCES WITH SUM K
+def countSubsequenceWithTargetSum(self, nums, k):
+        count=0
+        def solve(i,curr_sum):
+            nonlocal count    #TREATS count as a local 
+            if i==len(nums):
+                if curr_sum==k:
+                    count+=1
+                return
+            solve(i+1,curr_sum+nums[i])
+            solve(i+1,curr_sum)
+        solve(0,0)
+        return count
