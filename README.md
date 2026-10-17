@@ -105,3 +105,28 @@ def generateBinaryStrings(self, n):
                 solve(s+"1")
         solve("")
         return ans
+
+# COMBINATION SUM
+def combinationSum(self, candidates, target):
+        ans = []
+
+        def solve(i, curr, total):
+            if total == target:
+                ans.append(curr.copy())
+                return
+
+            if i == len(candidates) or total > target:
+                return
+
+            # Pick the element (can pick again)
+            curr.append(candidates[i])
+            solve(i, curr, total + candidates[i])
+
+            # Backtrack
+            curr.pop()
+
+            # Skip the element
+            solve(i + 1, curr, total)
+
+        solve(0, [], 0)
+        return ans
