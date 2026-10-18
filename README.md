@@ -106,7 +106,7 @@ def generateBinaryStrings(self, n):
         solve("")
         return ans
 
-# COMBINATION SUM
+# COMBINATION SUM 1
 def combinationSum(self, nums, target):
         ans = []
         def solve(i,remaining,curr):
@@ -124,3 +124,24 @@ def combinationSum(self, nums, target):
             solve(i+1,remaining,curr)
         solve(0,target,[])
         return ans
+
+# COMBINATION SUM 2
+def combinationSum2(self, nums, target):
+        nums.sort()
+        ans=[]
+        def solve(start,remaining,curr):
+            if remaining==0:
+                ans.append(curr.copy())
+                return 
+            for i in range(start,len(nums)):
+                if i>start and nums[i]==nums[i-1]:
+                    continue
+                #IF VALUE IS TOO LARGE
+                if nums[i]>remaining:
+                    break
+                curr.append(nums[i])
+                #MOVE FORWARD AS EACH ELEMENT CAN BE USED ONCE
+                solve(i+1,remaining-nums[i],curr)
+                curr.pop()
+        solve(0,target,[])
+        return ans 
