@@ -145,3 +145,20 @@ def combinationSum2(self, nums, target):
                 curr.pop()
         solve(0,target,[])
         return ans 
+
+# COMBINATION SUM 3
+def combinationSum3(self, k, n):
+        ans=[]
+        def solve(start,remaining,curr):
+            if len(curr)==k:
+                if remaining==0:
+                    ans.append(curr.copy())
+                return 
+            for i in range(start,10):
+                if i>remaining:
+                    break
+                curr.append(i)
+                solve(i+1,remaining-i,curr)
+                curr.pop()
+        solve(1,n,[])
+        return ans
