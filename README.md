@@ -107,26 +107,20 @@ def generateBinaryStrings(self, n):
         return ans
 
 # COMBINATION SUM
-def combinationSum(self, candidates, target):
+def combinationSum(self, nums, target):
         ans = []
-
-        def solve(i, curr, total):
-            if total == target:
+        def solve(i,remaining,curr):
+            if remaining==0:
                 ans.append(curr.copy())
-                return
-
-            if i == len(candidates) or total > target:
-                return
-
-            # Pick the element (can pick again)
-            curr.append(candidates[i])
-            solve(i, curr, total + candidates[i])
-
-            # Backtrack
+                return 
+            if i==len(nums) or remaining>target or remaining<0:
+                return 
+            #PICK THE CURRENT ELEMENT 
+            curr.append(nums[i])
+            solve(i,remaining-nums[i],curr)
+            #POP
             curr.pop()
-
-            # Skip the element
-            solve(i + 1, curr, total)
-
-        solve(0, [], 0)
+            #SKIP THE NUMBER
+            solve(i+1,remaining,curr)
+        solve(0,target,[])
         return ans
