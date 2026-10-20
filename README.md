@@ -174,3 +174,19 @@ def subsetSums(self, nums):
             solve(i+1,curr_sum)
         solve(0,0)
         return ans        
+
+# SUBSETS 2
+def subsetsWithDup(self, nums):
+        ans=[]
+        nums.sort()
+        def solve(i,curr):
+            if i==len(nums):
+                if curr.copy() not in ans:
+                    ans.append(curr.copy())
+                return 
+            curr.append(nums[i])
+            solve(i+1,curr)
+            curr.pop()
+            solve(i+1,curr)
+        solve(0,[])
+        return ans
