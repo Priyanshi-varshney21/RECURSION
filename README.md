@@ -9,7 +9,7 @@ def myPow(self, x, n):
             if n % 2 == 1:
                 ans *= x
             x *= x
-            n //= 2
+            n //= 2 
         return ans
 
 # GENERATE PARENTHESIS
