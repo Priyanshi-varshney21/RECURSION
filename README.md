@@ -190,3 +190,29 @@ def subsetsWithDup(self, nums):
             solve(i+1,curr)
         solve(0,[])
         return ans
+
+# LETTER COMBINATION OF A PHONE NUMBER
+def letterCombinations(self, digits):
+        if not digits:
+            return []
+        phone = {
+        "2": "abc",
+        "3": "def",
+        "4": "ghi",
+        "5": "jkl",
+        "6": "mno",
+        "7": "pqrs",
+        "8": "tuv",
+        "9": "wxyz"
+    }
+        ans =[]
+        def solve(i,curr):
+            if i==len(digits):
+                ans.append(curr)
+                return
+            letters=phone[digits[i]]
+
+            for ch in letters:
+                solve(i+1,curr+ch)
+        solve(0,"")
+        return ans 
