@@ -211,7 +211,6 @@ def letterCombinations(self, digits):
                 ans.append(curr)
                 return
             letters=phone[digits[i]]
-
             for ch in letters:
                 solve(i+1,curr+ch)
         solve(0,"")
