@@ -215,3 +215,21 @@ def letterCombinations(self, digits):
                 solve(i+1,curr+ch)
         solve(0,"")
         return ans 
+
+# PALINDROME PARTIONING
+def partition(self, s: str):
+        ans=[]
+        def is_palindrome(sub):
+            return sub==sub[::-1]
+        def solve(start,curr):
+            if start==len(s):
+                ans.append(curr.copy())
+                return 
+            for end in range(start,len(s)):
+                sub=s[start:end+1]
+                if is_palindrome(sub):
+                    curr.append(sub)
+                    solve(end+1,curr)
+                    curr.pop()
+        solve(0,[])
+        return ans 
