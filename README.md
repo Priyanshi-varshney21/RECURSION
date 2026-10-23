@@ -233,3 +233,28 @@ def partition(self, s: str):
                     curr.pop()
         solve(0,[])
         return ans 
+
+# WORD SEARCH
+def exist(self, board, word):
+        m=len(board)
+        n=len(board[0])
+        def solve(r,c,i):
+            if i==len(word):
+                return True
+            if(r<0 or r>=m or c<0 or c>=n or board[r][c]!=word[i]):
+                return False
+            ch=board[r][c]
+            board[r][c]="#"
+            found=(
+                solve(r+1,c,i+1) or 
+                solve(r-1,c,i+1) or 
+                solve(r,c+1,i+1) or 
+                solve(r,c-1,i+1)
+            )
+            board[r][c]=ch
+            return found
+        for r in range(m):
+            for c in range(n):
+                if solve(r,c,0):
+                    return True
+        return False
