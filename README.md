@@ -258,3 +258,49 @@ def exist(self, board, word):
                 if solve(r,c,0):
                     return True
         return False
+
+# N-QUEENS 
+
+def solveNQueens(self, n):
+    ans = []
+    board = [["."] * n for _ in range(n)]
+
+    def solve(row):
+        if row == n:
+            ans.append(["".join(r) for r in board])
+            return
+
+        for col in range(n):
+            if isSafe(row, col):
+                board[row][col] = "Q"
+                solve(row + 1)
+                board[row][col] = "."
+
+    def isSafe(row, col):
+        # CHECK SAME COLUMN
+        for r in range(row):
+            if board[r][col] == "Q":
+                return False
+
+        # CHECK LEFT DIAGONAL
+        r = row - 1
+        c = col - 1
+        while r >= 0 and c >= 0:
+            if board[r][c] == "Q":
+                return False
+            r -= 1
+            c -= 1
+
+        # CHECK RIGHT DIAGONAL
+        r = row - 1
+        c = col + 1
+        while r >= 0 and c < n:
+            if board[r][c] == "Q":
+                return False
+            r -= 1
+            c += 1
+
+        return True
+
+    solve(0)
+    return ans
