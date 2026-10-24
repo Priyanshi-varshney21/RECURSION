@@ -304,3 +304,34 @@ def solveNQueens(self, n):
 
     solve(0)
     return ans
+
+# RAT IN MAZE
+
+class Solution:
+    def findPath(self, mat):
+        n = len(mat)
+        ans = []
+
+        def solve(r, c, path):
+            if r == n-1 and c == n-1:
+                ans.append(path)
+                return
+
+            if (r < 0 or r >= n or c < 0 or c >= n
+                or mat[r][c] == 0):
+                return
+
+            mat[r][c] = 0
+
+            solve(r+1, c, path + "D")
+            solve(r, c-1, path + "L")
+            solve(r, c+1, path + "R")
+            solve(r-1, c, path + "U")
+
+            mat[r][c] = 1
+
+        if mat[0][0] == 1:
+            solve(0, 0, "")
+
+        return ans
+
