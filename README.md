@@ -362,4 +362,28 @@ def solveSudoku(self, board):
             return True
         solve()
                         
+# EXPRESSION ADD OPERATOR
+     ans=[]
+        def solve(i,expr,value,prev):
+            if i==len(num):
+                if value==target:
+                    ans.append(expr)
+                return 
 
+            for j in range(i,len(num)):
+                s=num[i:j+1]
+                if len(s)>1 and s[0]=='0':
+                    break
+            
+                curr=int(s)
+                if i==0:
+                    solve(j+1,s,curr,curr)
+                else:
+                    solve(j+1,expr+"+"+s,value+curr,curr)
+
+                    solve(j+1,expr+"-"+s,value-curr,-curr)
+
+                    solve(j+1,expr+"*"+s,value-prev+prev*curr,prev*curr)
+
+        solve(0,"",0,0)
+        return ans
