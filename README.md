@@ -335,3 +335,31 @@ class Solution:
 
         return ans
 
+# SUDOKU SOLVER 
+def solveSudoku(self, board):
+        def isSafe(row,col,ch):
+            for i in range(9):
+                if board[row][i]==ch:    #ROW
+                    return False
+                if board[i][col]==ch:    #COL
+                    return False
+                r = 3 * (row // 3) + i // 3    #3*3 grid
+                c = 3 * (col // 3) + i % 3
+                if board[r][c]==ch:
+                    return False
+            return True
+        def solve():
+            for r in range(9):
+                for c in range(9):      #BAse case when no empty cell is left then loop stop
+                    if board[r][c]==".":
+                        for ch in "123456789":
+                            if isSafe(r,c,ch):
+                                board[r][c]=ch
+                                if solve():
+                                    return True
+                                board[r][c]="."
+                        return False
+            return True
+        solve()
+                        
+
