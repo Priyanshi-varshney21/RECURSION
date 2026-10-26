@@ -385,5 +385,37 @@ def solveSudoku(self, board):
 
                     solve(j+1,expr+"*"+s,value-prev+prev*curr,prev*curr)
 
+
+# RAT IN A MAZE
+def findPath(self, mat):
+    n = len(mat)
+    ans = []
+
+    def solve(r, c, path):
+        # Destination reached
+        if r == n-1 and c == n-1:
+            ans.append(path)
+            return
+
+        # Invalid or blocked cell
+        if r < 0 or c < 0 or r >= n or c >= n or mat[r][c] == 0:
+            return
+
+        # Mark visited
+        mat[r][c] = 0
+
+        # Move Down, Left, Right, Up
+        solve(r+1, c, path + "D")
+        solve(r, c-1, path + "L")
+        solve(r, c+1, path + "R")
+        solve(r-1, c, path + "U")
+
+        # Backtrack: restore cell
+        mat[r][c] = 1
+
+    if mat[0][0] == 1:
+        solve(0, 0, "")
+
+    return ans
         solve(0,"",0,0)
         return ans
